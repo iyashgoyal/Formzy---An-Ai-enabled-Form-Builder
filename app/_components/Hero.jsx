@@ -16,8 +16,7 @@ function Hero() {
           </h1>
 
           <p className="mt-4 sm:text-xl/relaxed text-gray-500">
-            Generate, publish and share your form right away with AI. Dive into
-            insightful results, charts and analytics.
+            Generate, publish and share your form right away with AI.
           </p>
 
           <div className="mt-8 flex flex-wrap justify-center gap-4">
@@ -39,14 +38,12 @@ function Hero() {
       </div>
       {/* <img src='/grid.svg' className=' absolute w-full h-[400px] '/> */}
       <section className="">
-        <div className="mx-auto max-w-screen-xl px-4 py-56 ">
+        <div className="mx-auto max-w-screen-xl px-4 py-56 pb-20 ">
           <div className="mx-auto max-w-lg text-center">
-            <h2 className="text-3xl font-bold sm:text-4xl">How it Works</h2>
+            <h2 className="text-3xl font-bold text-primary sm:text-4xl">How it Works</h2>
 
-            <p className="mt-4 text-gray-300">
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-              Consequuntur aliquam doloribus nesciunt eos fugiat. Vitae aperiam
-              fugit consequuntur saepe laborum.
+            <p className="mt-4 text-gray-700">
+            Formzy streamlines form creation with ease. Simply input your prompt, and our advanced AI, powered by Google Gemini, generates relevant questions and options.
             </p>
           </div>
 
@@ -57,14 +54,12 @@ function Hero() {
             >
               <AtomIcon className="h-8 w-8" />
 
-              <h2 className="mt-4 text-xl font-bold text-black">
+              <h2 className="mt-4 text-xl font-bold text-pink-600">
                 Write promot for your form
               </h2>
 
               <p className="mt-1 text-sm text-gray-600">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex ut
-                quo possimus adipisci distinctio alias voluptatum blanditiis
-                laudantium.
+              Enter your prompt, and our advanced AI, powered by Google Gemini, will generate relevant questions and options tailored to your needs, ensuring a seamless start to your form creation process
               </p>
             </a>
 
@@ -74,14 +69,12 @@ function Hero() {
             >
               <Edit className="h-8 w-8" />
 
-              <h2 className="mt-4 text-xl font-bold text-black">
+              <h2 className="mt-4 text-xl font-bold text-pink-600">
                 Edit Your form{" "}
               </h2>
 
               <p className="mt-1 text-sm text-gray-600">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex ut
-                quo possimus adipisci distinctio alias voluptatum blanditiis
-                laudantium.
+              Customize your form effortlessly. Adjust questions and options to perfectly fit your requirements, ensuring the form meets your specific needs and preferences with an easy-to-use editing interface
               </p>
             </a>
 
@@ -91,14 +84,12 @@ function Hero() {
             >
               <Share2 className="h-8 w-8" />
 
-              <h2 className="mt-4 text-xl font-bold text-black">
-                Share & Start Accepting Responses
+              <h2 className="mt-4 text-xl font-bold text-pink-600">
+                Start Accepting Responses
               </h2>
 
               <p className="mt-1 text-sm text-gray-600">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex ut
-                quo possimus adipisci distinctio alias voluptatum blanditiis
-                laudantium.
+              Launch your form and begin collecting responses with ease. Manage, review, and analyze submissions through our intuitive platform, making it simple to gather and interpret your data effectively
               </p>
             </a>
           </div>

@@ -1,5 +1,4 @@
 ## 💡Live link 
-[formzy.vercel.app ](formzy.vercel.app)
 <a href="formzy.vercel.app" target="_blank">Click Here ☝🏻</a>
 
 ## 🛠️ &nbsp;Tech Stack

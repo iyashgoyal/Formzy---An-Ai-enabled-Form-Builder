@@ -1,5 +1,6 @@
 ## 💡Live link 
-[formzy.vercel.app ](formzy.vercel.app){:target="_blank"}
+[formzy.vercel.app ](formzy.vercel.app)
+<a href="formzy.vercel.app" target="_blank">Click Here ☝🏻</a>
 
 ## 🛠️ &nbsp;Tech Stack
 ![Next.js](https://img.shields.io/badge/Next.js-000000.svg?style=for-the-badge&logo=nextdotjs&logoColor=white)

@@ -9,6 +9,8 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
 
+
+
 function SideNav() {
     const menuList=[
         {
@@ -74,7 +76,7 @@ function SideNav() {
             ))}
         </div>
         <div className='fixed bottom-7 p-6 w-64 '>
-            <Button className="w-full">+ Create Form</Button>
+            {/*<Button onClick={()=>setOpenDailog(true)} className="w-full">+ Create Form</Button>*/}
             <div className='my-7'>
             <Progress value={PercFileCreated} />
             <h2 className='text-sm mt-2 text-gray-600'><strong>{formList?.length} </strong>Out of <strong>3</strong> File Created</h2>

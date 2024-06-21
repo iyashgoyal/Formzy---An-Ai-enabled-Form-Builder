@@ -1,5 +1,4 @@
-## 💡Live link 
-[formzy.vercel.app ](formzy.vercel.app)
+
 
 ## 🛠️ &nbsp;Tech Stack
 ![Next.js](https://img.shields.io/badge/Next.js-000000.svg?style=for-the-badge&logo=nextdotjs&logoColor=white)

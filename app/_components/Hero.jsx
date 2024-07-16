@@ -1,7 +1,10 @@
+"use client";
 import { AtomIcon, Edit, Share2 } from "lucide-react";
 import React from "react";
+import { useUser } from "@clerk/nextjs";
 
 function Hero() {
+  const {user, isSignedIn } = useUser();
   return (
     // bg-[url('/grid.svg')]
     <section className=" h-full bg-[url('/grid.svg')]">
@@ -22,14 +25,14 @@ function Hero() {
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <a
               className="block w-full rounded bg-primary px-12 py-3 text-sm font-medium text-white shadow hover:bg-purple-600 focus:outline-none focus:ring active:bg-red-500 sm:w-auto"
-              href="dashboard"
+              href={isSignedIn ? "dashboard" : "/sign-in"}
             >
               + Create AI Form
             </a>
 
             <a
               className="block w-full rounded px-12 py-3 text-sm font-medium text-primary shadow hover:text-purple-600 focus:outline-none focus:ring active:text-red-500 sm:w-auto"
-              href="#"
+              href="#bottom"
             >
               Learn More
             </a>
@@ -37,7 +40,7 @@ function Hero() {
         </div>
       </div>
       {/* <img src='/grid.svg' className=' absolute w-full h-[400px] '/> */}
-      <section className="">
+      <section>
         <div className="mx-auto max-w-screen-xl px-4 py-56 pb-20 ">
           <div className="mx-auto max-w-lg text-center">
             <h2 className="text-3xl font-bold text-primary sm:text-4xl">How it Works</h2>
@@ -47,7 +50,7 @@ function Hero() {
             </p>
           </div>
 
-          <div className="mt-8 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+          <div id="bottom" className="mt-8 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
             <a
               className="block rounded-xl border border-gray-800 p-8 shadow-xl transition hover:border-pink-500/10 hover:shadow-pink-500/10"
               href="#"

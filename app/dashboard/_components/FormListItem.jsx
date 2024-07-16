@@ -16,13 +16,14 @@ import {
 import { useUser } from '@clerk/nextjs'
 import { db } from '@/configs'
 import { JsonForms } from '@/configs/schema'
-import { and, eq } from 'drizzle-orm'
+import { and, eq, isNull } from 'drizzle-orm'
 import { toast } from 'sonner'
 import { RWebShare } from 'react-web-share'
   
 function FormListItem({formRecord,jsonForm,refreshData}) {
 
     const {user}=useUser();
+
     const onDeleteForm=async()=>{
         const result=await db.delete(JsonForms)
         .where(and(eq(JsonForms.id,formRecord.id),
@@ -34,6 +35,7 @@ function FormListItem({formRecord,jsonForm,refreshData}) {
             refreshData()
         }
     }
+
   return (
     <div className='border shadow-sm rounded-lg p-4'>
         <div className='flex justify-between'>

@@ -10,7 +10,6 @@ import {
 } from "@/components/ui/dialog"
 import { Button } from '@/components/ui/button'
 import { Textarea } from '@/components/ui/textarea'
-import { AiChatSession } from '@/configs/AiModal'
 import { useUser } from '@clerk/nextjs'
 import { db } from '@/configs'
 import { JsonForms } from '@/configs/schema'
@@ -20,7 +19,6 @@ import { Loader2 } from 'lucide-react'
 import { toast } from 'sonner'
 import { desc, eq } from 'drizzle-orm'
 
-const PROMPT=",On Basis of description create JSON form with formTitle, formHeading along with fieldName, FieldTitle,FieldType, Placeholder, label , required fields, and checkbox and select field type options will be in array only and in JSON format"
 function CreateForm() {
     const [openDialog,setOpenDailog]=useState(false)
     const [userInput,setUserInput]=useState();
@@ -47,32 +45,56 @@ function CreateForm() {
        
     }
     const onCreateForm=async()=>{
-       
-        if(formList?.length==3)
+        if(formList?.length>=10)
         {
-            toast('Upgrade to create unlimted form')
+            toast('Upgrade to create unlimited forms')
+            return;
+        }
+        if(!userInput?.trim())
+        {
+            toast.error('Describe the form you want to create.')
             return;
         }
         setLoading(true)
-      const result= await AiChatSession.sendMessage("Description:"+userInput+PROMPT);
-      console.log(result.response.text());
-      if(result.response.text())
-      {
-        const resp=await db.insert(JsonForms)
-        .values({
-            jsonform:result.response.text(),
-            createdBy:user?.primaryEmailAddress?.emailAddress,
-            createdAt:moment().format('DD/MM/yyyy')
-        }).returning({id:JsonForms.id});
-
-        console.log("New Form ID",resp[0].id);
-        if(resp[0].id)
+        try
         {
-            route.push('/edit-form/'+resp[0].id)
+            const response=await fetch('/api/generate-form',{
+                method:'POST',
+                headers:{'Content-Type':'application/json'},
+                body:JSON.stringify({description:userInput.trim()})
+            });
+            const data=await response.json();
+            if(!response.ok)
+            {
+                throw new Error(data.error||'Could not generate the form.')
+            }
+            const generatedForm=data.form;
+            if(!generatedForm)
+            {
+                throw new Error('Gemini returned an empty response.')
+            }
+
+            const resp=await db.insert(JsonForms)
+            .values({
+                jsonform:generatedForm,
+                createdBy:user?.primaryEmailAddress?.emailAddress,
+                createdAt:moment().format('DD/MM/yyyy')
+            }).returning({id:JsonForms.id});
+
+            if(resp[0]?.id)
+            {
+                route.push('/edit-form/'+resp[0].id)
+            }
         }
-        setLoading(false);
-      }
-      setLoading(false);
+        catch(error)
+        {
+            console.error('Form generation failed:',error)
+            toast.error(error.message||'Form generation failed. Check the browser console for details.')
+        }
+        finally
+        {
+            setLoading(false)
+        }
     }
     return (
         <div>

@@ -21,6 +21,11 @@ Being built on top of Node.js, it is fairly easy to set-up the environment. Foll
     npm install
     npm run dev
     ```
+
+- Add a Gemini API key to `.env.local` before generating forms:
+    ```sh
+    GEMINI_API_KEY=your_gemini_api_key
+    ```
 <br><br>
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.

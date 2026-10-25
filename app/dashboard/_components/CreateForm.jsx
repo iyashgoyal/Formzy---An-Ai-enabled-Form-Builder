@@ -73,6 +73,7 @@ function CreateForm() {
             {
                 throw new Error('Gemini returned an empty response.')
             }
+            JSON.parse(generatedForm)
 
             const resp=await db.insert(JsonForms)
             .values({

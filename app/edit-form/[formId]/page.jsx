@@ -36,10 +36,21 @@ function EditForm({ params }) {
 
     setRecord(result[0])
     console.log(result[0])
-    setJsonForm(JSON.parse(result[0].jsonform))
+    try {
+      setJsonForm(result[0].jsonform ? JSON.parse(result[0].jsonform) : {})
+    } catch (error) {
+      console.error('Invalid saved form JSON:', error)
+      setJsonForm({})
+      toast.error('This form contains invalid saved data. Please regenerate it.')
+    }
     setSelectedBackground(result[0].background)
-    setSelectedTheme(result[0].theme)
-    setSelectedStyle(JSON.parse(result[0].style))
+    setSelectedTheme(result[0].theme || 'light')
+    try {
+      setSelectedStyle(result[0].style ? JSON.parse(result[0].style) : {})
+    } catch (error) {
+      console.error('Invalid saved style JSON:', error)
+      setSelectedStyle({})
+    }
 
 
 

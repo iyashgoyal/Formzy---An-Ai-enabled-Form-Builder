@@ -23,7 +23,18 @@ function LiveAiForm({params}) {
         .where(eq(JsonForms.id,Number(params?.formid)))
 
         setRecord(result[0]);
-        setJsonForm(JSON.parse(result[0].jsonform));
+        try {
+            setJsonForm(result[0]?.jsonform ? JSON.parse(result[0].jsonform) : []);
+        } catch (error) {
+            console.error('Invalid saved form JSON:', error);
+            setJsonForm([]);
+        }
+        try {
+            setRecord(previous => ({ ...previous, parsedStyle: result[0]?.style ? JSON.parse(result[0].style) : {} }))
+        } catch (error) {
+            console.error('Invalid saved style JSON:', error);
+            setRecord(previous => ({ ...previous, parsedStyle: {} }))
+        }
         console.log(result);
     }
   return (
@@ -37,8 +48,8 @@ function LiveAiForm({params}) {
         jsonForm={jsonForm}
         onFieldUpdate={()=>console.log}
         deleteField={()=>console.log}
-        selectedStyle={JSON.parse(record?.style)}
-        selectedTheme={record?.theme}
+        selectedStyle={record?.parsedStyle || {}}
+        selectedTheme={record?.theme || 'light'}
         editable={false}
         formId={record.id}
         enabledSignIn={record?.enabledSignIn}

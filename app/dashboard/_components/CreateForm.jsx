@@ -78,6 +78,8 @@ function CreateForm() {
             const resp=await db.insert(JsonForms)
             .values({
                 jsonform:generatedForm,
+                style:'{}',
+                theme:'light',
                 createdBy:user?.primaryEmailAddress?.emailAddress,
                 createdAt:moment().format('DD/MM/yyyy')
             }).returning({id:JsonForms.id});

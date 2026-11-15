@@ -4,6 +4,12 @@ const {
     HarmBlockThreshold,
   } = require("@google/generative-ai");
 
+// The "*-latest" aliases can point at models that spend a long time reasoning
+// before answering. On serverless hosts (Vercel kills requests at 10-60s) that
+// turns into a timeout page instead of JSON, which the browser then fails to
+// parse. A pinned, non-thinking Flash-Lite model answers in a few seconds.
+const MODEL_NAME = "gemini-3.5-flash-lite";
+
 const generationConfig = {
   temperature: 1,
   topP: 0.95,
@@ -39,9 +45,16 @@ export function getAiModel() {
   }
 
   const genAI = new GoogleGenerativeAI(apiKey);
-  return genAI.getGenerativeModel({
-    model: "gemini-flash-latest",
-    generationConfig,
-    safetySettings,
-  });
+  return genAI.getGenerativeModel(
+    {
+      model: MODEL_NAME,
+      generationConfig,
+      safetySettings,
+    },
+    {
+      // Abort before the route's maxDuration so the API can return a JSON
+      // error message instead of the platform's HTML timeout page.
+      timeout: 45000,
+    }
+  );
 }

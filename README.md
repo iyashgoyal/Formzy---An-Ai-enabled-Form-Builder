@@ -28,6 +28,19 @@ Being built on top of Node.js, it is fairly easy to set-up the environment. Foll
     ```
 <br><br>
 
+### Deploying to Vercel
+
+Add **all** of the variables from `.env.local` in the Vercel project settings
+(Settings → Environment Variables), not just `GEMINI_API_KEY`:
+
+`NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY`, `CLERK_SECRET_KEY`,
+`NEXT_PUBLIC_CLERK_SIGN_IN_URL`, `NEXT_PUBLIC_CLERK_SIGN_UP_URL`,
+`NEXT_PUBLIC_DATABASE_URL_CONFIG`, `GEMINI_API_KEY`, `NEXT_PUBLIC_BASE_URL`.
+
+Redeploy after changing them — `NEXT_PUBLIC_*` values are baked in at build time.
+The form generation API route declares `maxDuration = 60`, so it needs a Vercel
+plan/runtime that allows 60 second functions.
+
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
